@@ -1,0 +1,8 @@
+.lintstagedrc.yml
+.huskyrc.yml
+.commitlintrc.yml
+.prettierrc.yml
+.eslintrc.yml
+
+dist/\*
+public/\*
