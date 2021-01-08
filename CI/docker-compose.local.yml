@@ -1,0 +1,27 @@
+# Set Docker Compose version
+# See official documentation at https://docs.docker.com/compose/
+version: '3.8'
+
+services:
+  server:
+    container_name: server
+    build:
+      context: ../
+      args:
+        ARG_ENV: development
+    environment:
+      DB_HOST: database
+    ports:
+      - 3000:3000
+  # Set Postgres database
+  # See official documentation at https://hub.docker.com/_/postgres
+  database:
+    container_name: database
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: root
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
