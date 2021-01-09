@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CredentialsDTO } from 'src/auth/dtos/credentials.dto';
+import { CredentialsDto } from 'src/auth/dtos/credentials.dto';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 
@@ -11,8 +11,12 @@ export class UsersService {
     private usersRepository: Repository<User>
   ) {}
 
-  async create(credentials: CredentialsDTO) {
+  async create(credentials: CredentialsDto) {
     return await this.usersRepository.create({ ...credentials }).save();
+  }
+
+  async findById(id: string) {
+    return await this.usersRepository.findOneOrFail(id);
   }
 
   async findByEmail(email: string) {
